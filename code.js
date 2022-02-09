@@ -30,7 +30,7 @@ const myMap = { // Must be empty arrays & objects to put data into.
         minZoom: '12',
         }).addTo(this.map)
 
-        // Add geolocation marker
+        // Added user marker
         const marker = L.marker(this.coordinates)
         marker.addTo(this.map).bindPopup('<p1><b>This is your location</b></p>').openPopup();
     },
@@ -38,7 +38,7 @@ const myMap = { // Must be empty arrays & objects to put data into.
     
     // Add business markers:
     addMarkers() {
-		for (var i = 0; i < this.businesses.length; i++) {
+		for (let i = 0; i < this.businesses.length; i++) {
 		this.markers = L.marker([
 			this.businesses[i].latitude,
 			this.businesses[i].longitude,
@@ -50,7 +50,7 @@ const myMap = { // Must be empty arrays & objects to put data into.
 }
 
 
-// Load map correctly: (event handler)
+// Load map correctly:
 window.onload = async () => {
 	const coords = await getCoords()
 	console.log(coords)
@@ -79,7 +79,8 @@ const options = { // Got this from foursquare documentation.
   let limit = 5 // only want to show 5 businesses at a time.
   let latitude = myMap.coordinates[0]
   let longitude = myMap.coordinates[1]
-  let response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.foursquare.com/v3/places/search?&query=${business}&limit=${limit}&ll=${latitude}%2C${longitude}`, options) // make response a variable for await fetch url. (using temporary link to work, from CORS, might have to change later...)
+
+  let response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.foursquare.com/v3/places/search?&query=${business}&limit=${limit}&ll=${latitude}%2C${longitude}`, options) // make response a variable for await fetch url. (using temporary link to work, from CORS, might have to request link again later...)
   let result = await response.text() 
   let parsedData = JSON.parse(result)
   let businesses = parsedData.results
@@ -88,7 +89,7 @@ const options = { // Got this from foursquare documentation.
 
 // Process foursquare array:
 function processBusinesses(data) {
-    let businesses = data.map((element) => {
+    let businesses = data.map((element) => { // .map function used element as parameter
         let location = {
             name: element.name,
             latitude: element.geocodes.main.latitude,
