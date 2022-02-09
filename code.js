@@ -1,6 +1,15 @@
 // Make sure Javascript file is linked to HTML
 console.log('hello')
 
+// Add red marker for businesses
+const redPin = L.icon({
+    iconUrl: './assets/red-pin.png',
+    iconSize:     [38, 38], // size of the icon
+    iconAnchor:   [19, 38], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -38] // point from which the popup should open relative to the iconAnchor
+});
+
+
 // Creating the map object:
 const myMap = { // Must be empty arrays & objects to put data into.
     coordinates: [],
@@ -26,13 +35,14 @@ const myMap = { // Must be empty arrays & objects to put data into.
         marker.addTo(this.map).bindPopup('<p1><b>This is your location</b></p>').openPopup();
     },
 
+    
     // Add business markers:
     addMarkers() {
 		for (var i = 0; i < this.businesses.length; i++) {
 		this.markers = L.marker([
 			this.businesses[i].latitude,
 			this.businesses[i].longitude,
-		])
+		], {icon: redPin}) // Added red marker for businesses.
 			.bindPopup(`<p1>${this.businesses[i].name}</p1>`)
 			.addTo(this.map)
 		}
