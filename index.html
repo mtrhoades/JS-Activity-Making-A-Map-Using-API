@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Activity</title>
+
+    <!-- link CSS file from Leaflet documentation -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+    <!-- Link code.js file -->
+   <script src="code.js" defer></script>
+
+    <!-- Link script source from Leaflet documentation -->
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
+   <style>
+       body {
+           margin: 1em;
+           padding: 1em;
+           border: 1px black solid;
+           font-family: sans-serif;
+       }
+       h1 {
+           text-align: center;
+           color: blue;
+       }
+       /* Style the map with simple properties */
+       #mapContainer {
+           height: 600px;
+           background-color: #ccc;
+       }
+   </style>
+</head>
+<body>
+    <h1 id="header">Let's Go Traveling!</h1>
+
+    <!-- Create form for dropdown menu -->
+    <form>
+        <select id="dropDown">
+            <option value="restaurants">Restaurants</option>
+            <option value="hotels">Hotels</option>
+            <option value="coffee">Coffee Shops</option>
+            <option value="markets">Markets</option>
+        </select>
+        <button id="submit">Search</button>
+    </form>
+
+    <!-- This div id is used as a parameter in buildMap function in code.js -->
+    <div id="mapContainer">
+
+    </div>
+
+</body>
+</html>
